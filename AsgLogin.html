@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: linear-gradient(to right, #ff7e5f, #feb47b);         }
+
+        .container {
+            background-color: #f9f9f9;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .container h1 {
+            margin-bottom: 20px;
+            color: #333;
+            font-size: 24px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .container h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .container input {
+            display: block;
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin: 10px auto;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .container button {
+            padding: 10px 20px;
+            width: calc(100% - 20px);
+            margin: 10px auto;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            background-color: #6e8efb;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .container button:hover {
+            background-color: #a777e3;
+        }
+
+        .container p {
+            margin-top: 20px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Expense Tracker</h1>
+    <h2>Login</h2>
+    <input type="text" id="username" placeholder="Username">
+    <input type="password" id="password" placeholder="Password">
+    <button onclick="login()">Log In</button>
+    <button onclick="register()">Register</button>
+    <p id="message"></p>
+</div>
+
+<script>
+    function login() {
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+        const storedUsername = localStorage.getItem('username');
+        const storedPassword = localStorage.getItem('password');
+
+        if (storedUsername && storedPassword) {
+            if (username === storedUsername && password === storedPassword) {
+                window.location.href = 'Asg2.html';
+            } else {
+                document.getElementById('message').innerText = 'Invalid username or password. Please try again or register if you are a new user.';
+                document.getElementById('message').style.color = 'red';
+            }
+        } else {
+            document.getElementById('message').innerText = 'No registered user found. Please register first.';
+            document.getElementById('message').style.color = 'red';
+        }
+    }
+
+    function register() {
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+
+        if (username && password) {
+            localStorage.setItem('username', username);
+            localStorage.setItem('password', password);
+            document.getElementById('message').innerText = 'Registration successful. You can now log in.';
+            document.getElementById('message').style.color = 'green';
+        } else {
+            document.getElementById('message').innerText = 'Please enter a username and password to register.';
+            document.getElementById('message').style.color = 'red';
+        }
+    }
+</script>
+</body>
+</html>
